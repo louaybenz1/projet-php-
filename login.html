@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — TEK-UP GYM</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="auth-page">
+
+    <!-- Navbar -->
+    <header>
+        <nav class="navgym section-content">
+            <a href="index.php" class="nav-logo">
+                <h2 class="logo-text">💪gym</h2>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.php"    class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="register.php" class="nav-link">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="auth-main">
+        <div class="auth-card">
+
+            <h2 class="auth-title">WELCOME BACK</h2>
+            <p class="auth-subtitle">Log in to your TEK-UP GYM account.</p>
+
+            <!-- PHP error message -->
+            <?php if ($error): ?>
+                <div class="alert alert-error">
+                    <i class="fa-solid fa-circle-xmark"></i> <?= htmlspecialchars($error) ?>
+                </div>
+            <?php endif; ?>
+
+            <!-- Login Form -->
+            <form action="login.php" method="POST" class="auth-form" id="loginForm" novalidate>
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="example@mail.com"
+                        value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"
+                        required
+                    >
+                    <span class="field-error" id="err-email"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Your password"
+                        required
+                    >
+                    <span class="field-error" id="err-password"></span>
+                </div>
+
+                <div class="auth-buttons">
+                    <button type="submit" class="btn-submit" style="flex: 1;">
+                        <i class="fa-solid fa-right-to-bracket"></i> Login
+                    </button>
+                </div>
+
+            </form>
+
+            <!-- Quick login hint for testing — remove in production -->
+            <div class="test-accounts">
+                <p class="test-title">🧪 Test Accounts (password: <code>password</code>)</p>
+                <div class="test-list">
+                    <span>Admin: <code>admin@tekupgym.tn</code></span>
+                    <span>Coach: <code>ahmed@tekupgym.tn</code></span>
+                    <span>Client: <code>louay@mail.com</code></span>
+                </div>
+            </div>
+
+            <p class="auth-footer">
+                Don't have an account? <a href="register.php" class="auth-link">Register here</a>
+            </p>
+
+        </div>
+    </main>
+
+    <script src="js/validation.js"></script>
+</body>
+</html>
